@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Import and Display</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="step">Step 1: Select File</div>
+        <div class="file-upload">
+            <input type="file" id="fileInput" class="file-input" accept=".json, .csv">
+            <label for="fileInput">Supported File Types(s): CSV, JSON</label>
+        </div>
+
+        <div class="step">Step 2: Specify Format</div>
+        <div class="file-format">
+            <label for="fileType">File Type:</label>
+            <select id="fileType">
+                <option value="json">JSON</option>
+                <option value="csv">CSV</option>
+            </select>
+            <label for="charEncoding">Character Encoding:</label>
+            <select id="charEncoding">
+                <option value="utf-8">UTF-8</option>
+                <option value="iso-8859-1">ISO-8859-1</option>
+            </select>
+            <label for="delimiter">Delimiter:</label>
+            <select id="delimiter">
+                <option value=",">Comma (,)</option>
+                <option value=";">Semicolon (;)</option>
+            </select>
+            <label for="hasHeader">Has Header:</label>
+            <input type="checkbox" id="hasHeader">
+        </div>
+
+        <div class="step">Step 3: Display Handling</div>
+            <div class="display-handling">
+                <label>Select the fields to be displayed:</label>
+                <div class="fields-container">
+                    <div>
+                        <p>Available Fields</p>
+                        <select id="availableFields" multiple class="available-fields"></select>
+                    </div>
+                    <div class="btn-group">
+                    <button onclick="moveOption('availableFields', 'selectedFields')">&gt;&gt;</button>
+                    <button onclick="moveOption('selectedFields', 'availableFields')">&lt;&lt;</button>
+                </div>
+                <div>
+                    <p>Fields to be displayed</p>
+                    <select id="selectedFields" multiple class="selected-fields"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="green" onclick="displayDataPage()">Next</button>
+            <button class="red" onclick="cancel()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="productTable" class="hidden">
+        <h2>Displayed Data</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark"></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
